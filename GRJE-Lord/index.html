@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Portiforial</title>
+    <link rel="stylesheet" href="./src/css/home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+   <div id="loader">
+  <div class="spinner"></div>
+   <div>
+     <h3>Welcome to Our website</h3>
+   </div>
+</div>
+
+   
+    <div class="header">
+       <img src="/assets/logo2.png" alt="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="/src/pages/more.html">About Us</a></li>
+                <li><a href="/src/html/contact4.html">Contact</a></li>
+                <li><a href="/src/html/port.html">Portiforial</a></li>
+                <li><a href="/src/blogs/blogs.html">blogs</a></li>
+                <li><a href="/src/html/login.html">Login</a></li>
+                
+            </ul>
+
+        </nav>
+       
+    </div>
+    <section>
+    
+     <div class="container">
+       
+        <div class="typewriter-container">
+  <h1>Hi, We Deal with </h1>
+  <h2><span class="typed-text"></span><span class="cursor">|</span></h2>
+        </div>
+        <div class="imag">
+            <img src="/assets/images (6).png" alt="image">
+        </div>
+    </div>
+    <div class="audio-greeting">
+  <button onclick="document.getElementById('voice').play()">🔊 Play Greeting</button>
+<audio id="voice" src="/assets/audio/record.mp3"></audio>
+</div>
+    </section>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Hi, We are <span class="highlight">GRJE</span></h1>
+    <p class="tagline">Front-End Developer | Crafting Clean & Interactive Web Experiences</p>
+    <p class="description">
+      We specialize in building responsive websites that combine sleek design with smooth user experience. 
+      Whether it's a landing page, portfolio, or full-scale web app — We bring your ideas to life with HTML, CSS, and modern front-end tools.
+    </p>
+  </div>
+</section>
+
+
+    <footer class="footer">
+
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h2>GRJE</h2>
+      <p>Front-End Developer | Building clean and modern websites.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/src/pages/more.html">About Me</a></li>
+        <li><a href="/src/html/port.html">Portfolio</a></li>
+        <li><a href="/src/html/contact4.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-social">
+      <h4>Connect</h4>
+      <div class="social-icons">
+       <a href="#">Facebook<i class="fa-brands fa-facebook"></i></a>
+       <a href="#">twitter<i class="fa-brands fa-twitter"></i></a>
+       <a href="#">whatsapp<i class="fa-brands fa-whatsapp"></i></a>
+       <a href="#">Instagram<i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 GRJE. All rights reserved.
+  </div>
+</footer>
+
+
+
+</div>
+
+
+   <script >
+   window.addEventListener("load", () => {
+  setTimeout(() => {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = 0;
+    loader.style.transition = "opacity 0.5s ease";
+    setTimeout(() => {
+      loader.style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }, 500);
+  }, 2000); // Delay before fade
+});
+
+ 
+// audio play
+    // Check if the user has visited before
+    const hasPlayed = localStorage.getItem('hasPlayedGreeting');
+
+    if (!hasPlayed) {
+      const audio = document.getElementById('voiceGreeting');
+
+      // Play after small delay (optional, for page load comfort)
+      setTimeout(() => {
+        audio.play();
+        // Mark as played
+        localStorage.setItem('hasPlayedGreeting', 'true');
+      }, 1000); // 1 second delay
+    }
+  const phrases = [
+    "Front-End Developer",
+    "UI/UX Design",
+    "Web Design Specialist",
+    "Creative Coder",
+    "Window repair"
+  ];
+
+  const typedText = document.querySelector(".typed-text");
+  let currentPhraseIndex = 0;
+  let currentCharIndex = 0;
+  let isDeleting = false;
+  const typingSpeed = 100;
+  const deletingSpeed = 50;
+  const delayBetweenPhrases = 1500;
+
+  function type() {
+    const currentPhrase = phrases[currentPhraseIndex];
+    if (isDeleting) {
+      typedText.textContent = currentPhrase.substring(0, currentCharIndex--);
+    } else {
+      typedText.textContent = currentPhrase.substring(0, currentCharIndex++);
+    }
+
+    if (!isDeleting && currentCharIndex === currentPhrase.length) {
+      isDeleting = true;
+      setTimeout(type, delayBetweenPhrases);
+    } else if (isDeleting && currentCharIndex === 0) {
+      isDeleting = false;
+      currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+      setTimeout(type, 300);
+    } else {
+      setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    type();
+  });
+  </script>
+</body>
+</html>
+
