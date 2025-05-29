@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="/src/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,21 +16,43 @@
             <img src="/assets/logo2.png" alt="">
             <ul>
                 <li><a href="/index.html"><i class="fa-solid fa-house"></i>Home</a></li>
-                <li><a href="../pages/more.html"><i class="fa-regular fa-address-card"></i>About Us</a></li>
+                <li><a href="./more.html"><i class="fa-regular fa-address-card"></i>About Us</a></li>
                 <li><a href="./contact4.html"><i class="fa-solid fa-phone"></i>Contact</a></li>
                 <li><a href="./port.html"><i class="fa-solid fa-briefcase"></i>portifoliol</a></li>
-                <li><a href="../html/blog2.html"><i class="fa-solid fa-blog"></i>blogs</a></li>
+                <li><a href="./blog2.html"><i class="fa-solid fa-blog"></i>blogs</a></li>
+                <li><a href="./comment.html"><i class="fa-solid fa-comment"></i>comment</a></li>
+               <li><a href="./notification.html"><i class="fa-solid fa-bell"></i>Notification</a></li>
+                  <li><a href="./profile.html"><i class="fa-solid fa-user"></i>Profile</a></li>
             </ul>
     <div class="logout">
             <a href="logout.html"><i class="fa-solid fa-arrow-right-from-bracket"></i>LogOut</a>
+        
+           
+</div>
+ <div class="recent-activity">
+                <div class="activity-log">
+  <a href=""><h2>Recent Activity</h2></a>
+  <ul id="activity-list"></ul>
+
+            </div>
         </div>
         </nav>
 
         <section class="main">
+            <div class="leftcont">
+           <h1 id="greeting-message">Welcome!</h1>
+          <p>This is your personalized dashboard.</p>
+          <div class="ads">
+            <div class="ad-banner">
+ 
+</div>
+
+          </div>
+            </div>
             <div class="main-top">
                 <h1>Skills</h1>
                 <i class="fa-regular fa-star"></i>  
-                 <span >🚀 Welcome to your dashboard! 🎉</span>
+                
                    </div>
                    <div class="main-skills">
                     <div class="card">
@@ -140,6 +162,41 @@
         </div>
       
     </div>
+    <script>
+  const username = localStorage.getItem('username') || sessionStorage.getItem('username');
+
+  if (username) {
+    document.getElementById('welcome-message').textContent = `👋 Welcome back, ${username}!`;
+  } else {
+    document.getElementById('welcome-message').textContent = "👋 Welcome to your dashboard!";
+  }
+
+function displayGreeting() {
+  const hour = new Date().getHours();
+  const name = localStorage.getItem("userName") || "User";
+
+  let greeting = "Hello";
+  if (hour < 12) {
+    greeting = "Good morning";
+  } else if (hour < 18) {
+    greeting = "Good afternoon";
+  } else {
+    greeting = "Good evening";
+  }
+
+  const message = `${greeting}, ${name}! 👋`;
+  const greetingEl = document.getElementById("greeting-message");
+  if (greetingEl) {
+    greetingEl.textContent = message;
+  }
+}
+
+
+displayGreeting();
+
+
+
+    </script>
     
 </body>
 </html>

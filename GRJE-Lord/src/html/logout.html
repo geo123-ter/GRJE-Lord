@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="../css/logout.css">
+    <link rel="stylesheet" href="/src/css/logout.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,18 +18,108 @@
     <p>or</p>
     <button onclick="goTohome()">Go to home</button>
 </div>
+<!-- lating system -->
+
+<h2>Rate and Comment:</h2>
+
+<!-- Stars -->
+<div class="stars" id="starContainer">
+  <span class="star" data-value="1">&#9733;</span>
+  <span class="star" data-value="2">&#9733;</span>
+  <span class="star" data-value="3">&#9733;</span>
+  <span class="star" data-value="4">&#9733;</span>
+  <span class="star" data-value="5">&#9733;</span>
+</div>
+
+
+<textarea id="commentBox" placeholder="Write your comment here..."></textarea>
+
+
+<button onclick="submitRating()">Submit</button>
+
+
+<div id="output"></div>
 
 <script>
-  
-  localStorage.removeItem("user");
+function goToLogin() {
+    window.location.href = "../html/login.html";
+}
+function goTohome() {
+    window.location.href = "/index.html";
+}
+  const stars = document.querySelectorAll('.star');
+  let currentRating = 0;
 
-  function goToLogin() {
-    window.location.href = "login.html";
+  stars.forEach(star => {
+    star.addEventListener('mouseover', () => {
+      resetStars();
+      highlightStars(star.dataset.value, 'hover');
+    });
+
+    star.addEventListener('mouseout', () => {
+      resetStars();
+      highlightStars(currentRating, 'active');
+    });
+
+    star.addEventListener('click', () => {
+      currentRating = star.dataset.value;
+      resetStars();
+      highlightStars(currentRating, 'active');
+    });
+  });
+
+  function resetStars() {
+    stars.forEach(s => s.classList.remove('active', 'hover'));
   }
-    function goTohome() {
-        window.location.href = "/index.html";
+
+  function highlightStars(rating, className) {
+    stars.forEach(s => {
+      if (s.dataset.value <= rating) {
+        s.classList.add(className);
+      }
+    });
+  }
+
+  function submitRating() {
+    const comment = document.getElementById('commentBox').value.trim();
+    const output = document.getElementById('output');
+
+    if (currentRating == 0) {
+      alert("Please select a rating.");
+      return;
     }
-    
+
+    if (comment === "") {
+      alert("Please write a comment.");
+      return;
+    }
+
+    output.innerHTML = `
+      <strong>✅ You submitted:</strong><br>
+      ⭐ Rating: ${currentRating}/5<br>
+      💬 Comment: ${comment}
+    `;
+
+   
+    localStorage.setItem("userRating", currentRating);
+    localStorage.setItem("userComment", comment);
+
+    // Clear inputs
+    document.getElementById("commentBox").value = "";
+    currentRating = 0;
+    resetStars();
+  }
+
+  
+  const savedRating = localStorage.getItem("userRating");
+  const savedComment = localStorage.getItem("userComment");
+  if (savedRating && savedComment) {
+    document.getElementById("output").innerHTML = `
+      <strong>🕓 Last submitted:</strong><br>
+      ⭐ Rating: ${savedRating}/5<br>
+      💬 Comment: ${savedComment}
+    `;
+  }
 </script>
 
 </body>

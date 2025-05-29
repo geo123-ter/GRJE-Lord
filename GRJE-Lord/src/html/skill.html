@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .skills-section {
+   padding: 60px 20px;
+  background: #f0f0f0;
+  border-radius: 12px;
+  max-width: 800px;
+  margin-top: 90px;
+  margin: 0 auto;
+  animation: fadeIn 1s ease; 
+} 
+
+ .section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.skill {
+  margin-bottom: 25px;
+} 
+
+.skill-info {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 8px;
+  gap: 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.skill-info i {
+  color: #007BFF;
+  font-size: 1.4rem;
+}
+
+.skill-bar {
+  background: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 20px;
+}
+
+.skill-progress {
+  height: 100%;
+  background: linear-gradient(to right, #007BFF, #ff3300);
+  border-radius: 20px;
+  width: 0;
+  transition: width 1s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); } 
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: -10px;
+   background: #4b6beb;
+}
+ .header img{
+   margin-top: -10px;
+   margin-left: 50px;  
+   
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 29px;
+   
+    }
+    nav ul {
+        display: flex;
+        list-style: none;
+        justify-items: space-between;
+        margin-top: -100px;
+        position: sticky;
+        top: 1px; 
+       
+    }
+    nav ul li {
+        margin: 0 10px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #fbf8f8;
+        font-size: 20px;
+    } 
+nav ul li a.active,
+ nav ul li a:hover{
+    color: white;
+   
+    text-decoration: underline;
+    border-radius: 5px;
+}
+    nav ul li a:hover {
+        color:rgb(253, 253, 255);
+        text-decoration: overline;       
+    }
+ .header img{
+  width: 160px;
+  height: 160px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  
+ }
+   .footer {
+  background-color: #4b6beb;
+  color: #000000;
+  padding: 40px 20px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  margin-top: 60px;
+ 
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+  gap: 40px;
+}
+
+.footer-brand {
+  flex: 1 1 250px;
+}
+
+.footer-brand h2 {
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.footer-brand p {
+  font-size: 20px;
+  line-height: 1.4;
+  color: #080808;
+  font-weight: bold;
+}
+
+.footer-links,
+.footer-social {
+  flex: 1 1 200px;
+}
+
+.footer-links h4,
+.footer-social h4 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #000000;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  text-decoration: none;
+  color: #000000;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.footer-links ul li a:hover {
+  color: #fff;
+}
+
+.social-icons a {
+  font-size: 18px;
+  margin-right: 15px;
+  color: #ccc;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 18px;
+  color: #000000;
+  border-top: 1px solid #020202;
+  margin-top: 20px;
+  font-weight: 600;
+}
+.footer-social a i {
+  font-size: 20px;
+  margin-left: 9px;
+}
+    </style>
+</head>
+<body>
+   <div class="header">
+       <img src="/assets/logo2.png" alt="logo">
+        <nav>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="./more.html">About Us</a></li>
+                <li><a href="./contact4.html">Contact</a></li>
+                <li><a href="./port.html">Portiforial</a></li>
+                <li><a href="./skill.html">Skills</a></li>
+                <li><a href="./blogs.html">blogs</a></li>
+                <li><a href="./login.html">Login</a></li> 
+            </ul>
+        </nav>
+    </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<section id="skills" class="skills-section">
+  <h2 class="section-title">My Skills</h2>
+
+  <div class="skill">
+    <div class="skill-info">
+      <i class="fab fa-html5"></i>
+      <span>HTML</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-progress="95%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-info">
+      <i class="fab fa-css3-alt"></i>
+      <span>CSS</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-progress="90%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-info">
+      <i class="fab fa-js-square"></i>
+      <span>JavaScript</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-progress="80%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-info">
+      <i class="fab fa-react"></i>
+      <span>React</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-progress="75%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-info">
+      <i class="fab fa-node-js"></i>
+      <span>Node.js</span>
+    </div>
+    <div class="skill-bar">
+      <div class="skill-progress" data-progress="70%"></div>
+    </div>
+  </div>
+</section>
+
+
+ <footer class="footer">
+
+  <div class="footer-container">
+    <div class="footer-brand">
+      <h2>GRJE</h2>
+      <p>Front-End Developer | Building clean and modern websites.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./src/html/more.html">About Me</a></li>
+        <li><a href="./src/html/port.html">Portfolio</a></li>
+        <li><a href="./src/html/contact4.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-social">
+      <h4>Connect</h4>
+      <div class="social-icons">
+       <a href="#">Facebook<i class="fa-brands fa-facebook"></i></a>
+       <a href="#">twitter<i class="fa-brands fa-twitter"></i></a>
+       <a href="#">whatsapp<i class="fa-brands fa-whatsapp"></i></a>
+       <a href="#">Instagram<i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 GRJE. All rights reserved.
+  </div>
+</footer>
+
+
+<script>
+  window.addEventListener('scroll', () => {
+    const skills = document.querySelectorAll('.skill-progress');
+    const windowHeight = window.innerHeight;
+
+    skills.forEach(skill => {
+      const skillTop = skill.getBoundingClientRect().top;
+      if (skillTop < windowHeight - 50) {
+        const targetWidth = skill.getAttribute('data-progress');
+        skill.style.width = targetWidth;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

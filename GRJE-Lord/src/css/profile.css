@@ -59,3 +59,55 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+/* media querry */
+@media (max-width: 768px) {
+  .profile-box {
+    padding: 20px;
+    margin-top: -50%;
+  }
+
+  .profile-box form label {
+    margin-bottom: 10px;
+  }
+
+  .profile-box input[type="text"],
+  .profile-box select,
+  .profile-box button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .profile-display img {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (max-width: 480px) {
+  .profile-box {
+    padding: 15px;
+    margin-top: -30%;
+  }
+
+  .profile-box form label {
+    margin-bottom: 8px;
+  }
+
+  .profile-box input[type="text"],
+  .profile-box select,
+  .profile-box button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 6px;
+  }
+
+  .profile-display img {
+    width: 40px;
+    height: 40px;
+  }
+}
+.profile-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}

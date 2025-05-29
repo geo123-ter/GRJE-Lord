@@ -7,7 +7,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="/src/css/login.css">
 </head>
 <body>
      <div class="wrapper">
@@ -31,7 +31,7 @@
             <div class="form-cols">
                 <div class="col-1"></div>
                 <div class="col-2">
-                    <a href="#">Forgot password</a>
+                    <a href="forgot.html">Forgot password</a>
                 </div>                
             </div>
             <div class="input-bo">
@@ -41,7 +41,9 @@
                 <span>Dont't have an account ? <a href="#" onclick="registerFunction()">Register</a></span>
             </div>
         </form> 
-        <!-- register form -->
+  
+
+        <!-- register form  -->
          <form action="#" class="register-form" autocomplete="on">
                 <div class="input-box">
                 <input type="text" class="input-field" id="reg-name" placeholder="first name" required>
@@ -61,7 +63,7 @@
                 <i class="fa-solid fa-lock"></i>
             </div>
                 <div class="input-box">
-                <input type="text" class="input-field" id="reg-pass" placeholder="confrim password" required>
+                <input type="password" class="input-field" id="reg-pass" placeholder="confrim password" required>
 
                 <i class="fa-solid fa-lock"></i>
             </div>
@@ -84,7 +86,49 @@
         
     </div>
     <script src="../java/login.js"></script>
-    
+  <script>
+
+  
+  document.querySelector('.login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('log-email').value;
+    const password = document.getElementById('log-pass').value;
+    // Check if user is registered (using localStorage as example)
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.email === email);
+    if (!user) {
+      alert('User not registered. Please register first.');
+      return;
+    }
+    if (user.password !== password) {
+      alert('Incorrect password.');
+      return;
+    }
+    // Redirect to dashboard if login successful
+    window.location.href = 'dashboard.html';
+  });
+
+  // Example registration handler to store users in localStorage
+  document.querySelectorAll('.register-form').forEach(form => {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const emailInput = form.querySelector('input[type="email"], #reg-email');
+      const passInput = form.querySelector('input[type="password"], #reg-pass');
+      if (!emailInput || !passInput) return;
+      const email = emailInput.value;
+      const password = passInput.value;
+      let users = JSON.parse(localStorage.getItem('users') || '[]');
+      if (users.find(u => u.email === email)) {
+        alert('User already registered.');
+        return;
+      }
+      users.push({ email, password });
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('Registration successful. You can now log in.');
+    });
+  });
+
+     </script>
           
 </body>
 </html>

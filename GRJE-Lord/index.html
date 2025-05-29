@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Portiforial</title>
-    <link rel="stylesheet" href="./src/css/home.css">
+    <link rel="stylesheet" href="/src/css/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" 
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
      crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
 
 </head>
 <body>
@@ -24,15 +21,18 @@
 
    
     <div class="header">
-       <img src="/assets/logo2.png" alt="logo">
+       <img src="./assets/logo2.png" alt="logo">
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="/src/pages/more.html">About Us</a></li>
-                <li><a href="/src/html/contact4.html">Contact</a></li>
-                <li><a href="/src/html/port.html">Portiforial</a></li>
-                <li><a href="/src/blogs/blogs.html">blogs</a></li>
-                <li><a href="/src/html/login.html">Login</a></li>
+                <li><a href="/GRJE-Lord/index.html">Home</a></li>
+                <li><a href="./src/html/more.html">About Us</a></li>
+                <li><a href="./src/html/contact4.html">Contact</a></li>
+                <li><a href="./src/html/port.html">Portiforial</a></li>
+                <li><a href="./src/html/skill.html">Skills</a></li>
+                <li><a href="./src/html/blogs.html">blogs</a></li>
+                <li><a href="./src/html/login.html">Login</a></li>
+                
+                
                 
             </ul>
 
@@ -48,13 +48,34 @@
   <h2><span class="typed-text"></span><span class="cursor">|</span></h2>
         </div>
         <div class="imag">
-            <img src="/assets/images (6).png" alt="image">
+            <img src="./assets/images (6).png" alt="image">
         </div>
     </div>
     <div class="audio-greeting">
   <button onclick="document.getElementById('voice').play()">🔊 Play Greeting</button>
-<audio id="voice" src="/assets/audio/record.mp3"></audio>
+<audio id="voice" src="./assets/audio/record.mp3"></audio>
 </div>
+<!-- Help Chat Button -->
+ 
+<div id="chat-toggle" onclick="toggleChat()">
+  💬 Help
+</div>
+
+<!-- Chat Box -->
+<div id="chat-box" class="chat-box hidden">
+  <div class="chat-header">
+    <span>Support</span>
+    <button onclick="toggleChat()">×</button>
+  </div>
+  <div id="chat-messages" class="chat-messages">
+    <div class="message bot">Hi! How can I help you today?</div>
+  </div>
+  <form onsubmit="sendMessage(event)" class="chat-form">
+    <input type="text" id="chat-input" placeholder="Type your message..." required />
+    <button type="submit">Send</button>
+  </form>
+</div>
+
     </section>
 <section class="hero">
   <div class="hero-content">
@@ -79,10 +100,10 @@
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="/index.html">Home</a></li>
-        <li><a href="/src/pages/more.html">About Me</a></li>
-        <li><a href="/src/html/port.html">Portfolio</a></li>
-        <li><a href="/src/html/contact4.html">Contact</a></li>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./src/html/more.html">About Me</a></li>
+        <li><a href="./src/html/port.html">Portfolio</a></li>
+        <li><a href="./src/html/contact4.html">Contact</a></li>
       </ul>
     </div>
 
@@ -117,18 +138,14 @@
       loader.style.display = "none";
       document.getElementById("main-content").style.display = "block";
     }, 500);
-  }, 2000); // Delay before fade
+  }, 2000); 
 });
 
- 
-// audio play
-    // Check if the user has visited before
     const hasPlayed = localStorage.getItem('hasPlayedGreeting');
 
     if (!hasPlayed) {
       const audio = document.getElementById('voiceGreeting');
 
-      // Play after small delay (optional, for page load comfort)
       setTimeout(() => {
         audio.play();
         // Mark as played
@@ -174,37 +191,70 @@
   document.addEventListener("DOMContentLoaded", () => {
     type();
   });
-  //fire base
- 
 
-  // Remove this duplicate firebaseConfig and initialization block
-</script>
+  function toggleChat() {
+  const chatBox = document.getElementById("chat-box");
+  chatBox.classList.toggle("hidden");
+}
+
+function sendMessage(event) {
+  event.preventDefault();
+
+  const input = document.getElementById("chat-input");
+  const message = input.value.trim();
+  if (!message) return;
+
+  const messagesDiv = document.getElementById("chat-messages");
+
+  // User message
+  const userMsg = document.createElement("div");
+  userMsg.className = "message user";
+  userMsg.textContent = message;
+  messagesDiv.appendChild(userMsg);
+
+  input.value = "";
+
+  // Auto-reply simulation
+  setTimeout(() => {
+    const botMsg = document.createElement("div");
+    botMsg.className = "message bot";
+    botMsg.textContent = "Thanks for your message! We'll get back to you soon.";
+    // Simulate a bot response
+    if (message.toLowerCase().includes("hello")) {
+      botMsg.textContent = "Hello! How can I assist you today?";
+    } else if (message.toLowerCase().includes("help")) {
+      botMsg.textContent = "Sure! What do you need help with?";
+    } else if (message.toLowerCase().includes("thanks")) {
+      botMsg.textContent = "You're welcome! If you have any more questions, feel free to ask.";
+    }
+    messagesDiv.appendChild(botMsg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }, 800);
+
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+// recent activity log
+function logActivity(action) {
+  const activityList = JSON.parse(localStorage.getItem("activityLog")) || [];
+  const timestamp = new Date().toLocaleString();
+  activityList.unshift(`${timestamp} — ${action}`);
+  if (activityList.length > 10) activityList.pop(); // Keep only last 10
+  localStorage.setItem("activityLog", JSON.stringify(activityList));
+  renderActivity();
+}
+
+function renderActivity() {
+  const list = document.getElementById("activity-list");
+  const activityList = JSON.parse(localStorage.getItem("activityLog")) || [];
+  list.innerHTML = "";
+  activityList.forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    list.appendChild(li);
+  });
+}
 
   </script>
-  <!-- fire base -->
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyBVrUPHUycxwAtljRnyEVFaHW_z5wX8wlI",
-    authDomain: "grje-d4f09.firebaseapp.com",
-    projectId: "grje-d4f09",
-    storageBucket: "grje-d4f09.firebasestorage.app",
-    messagingSenderId: "874037262796",
-    appId: "1:874037262796:web:e98d0e42aca34677878569",
-    measurementId: "G-HLE7XSHM5S"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
 </body>
 </html>
 

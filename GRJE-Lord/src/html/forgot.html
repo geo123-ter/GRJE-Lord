@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Forgot Password</title>
+  <style>
+    body { font-family: Arial; max-width: 400px; margin: auto; padding: 2rem; }
+    input, button { width: 100%; padding: 10px; margin-top: 10px; }
+    #reset-section { display: none; }
+  </style>
+</head>
+<body>
+
+  <h2>Forgot Password</h2>
+
+  <div id="email-section">
+    <input type="email" id="user-email" placeholder="Enter your email" required>
+    <button onclick="sendVerificationCode()">Send Verification Code</button>
+    <p id="sent-code"></p>
+  </div>
+
+  
+  <div id="reset-section">
+    <input type="text" id="entered-code" placeholder="Enter verification code" required>
+    <input type="password" id="new-password" placeholder="Enter new password" required>
+    <button onclick="resetPassword()">Reset Password</button>
+  </div>
+
+  <p id="message"></p>
+
+  <script>
+    let generatedCode = "";
+
+    function sendVerificationCode() {
+      const email = document.getElementById('user-email').value;
+      if (!email) {
+        alert("Please enter your email.");
+        return;
+      }
+
+     
+      generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+      
+      document.getElementById('sent-code').textContent = `Code sent: ${generatedCode}`;
+      document.getElementById('reset-section').style.display = "block";
+    }
+
+    function resetPassword() {
+      const codeInput = document.getElementById('entered-code').value;
+      const newPassword = document.getElementById('new-password').value;
+
+      if (codeInput === generatedCode) {
+        document.getElementById('message').textContent = "✅ Password has been reset .";
+        document.getElementById('message').style.color = "green";
+      } else {
+        document.getElementById('message').textContent = "❌ Invalid verification code.";
+        document.getElementById('message').style.color = "red";
+      }
+    }
+  </script>
+
+</body>
+</html>

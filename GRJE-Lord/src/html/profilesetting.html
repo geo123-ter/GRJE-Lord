@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .settings-panel {
+  margin-top: 40px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.settings-panel h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.settings-panel input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.settings-panel button {
+  width: 100%;
+  padding: 10px;
+  background: #007BFF;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.success-msg {
+  color: green;
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+    </style>
+</head>
+<body>
+    <main class="user-dashboard">
+  <h1>Welcome, User! 🎉</h1>
+  <p>This is your personalized dashboard.</p>
+
+  <div class="user-cards">
+    <div class="user-card">
+      <i class="fas fa-book"></i>
+      <h3>My Courses</h3>
+      <p>Access your learning materials.</p>
+    </div>
+    <div class="user-card">
+      <i class="fas fa-envelope"></i>
+      <h3>Messages</h3>
+      <p>Check your latest messages.</p>
+    </div>
+    <div class="user-card" onclick="toggleSettings()">
+      <i class="fas fa-cog"></i>
+      <h3>Settings</h3>
+      <p>Update your profile info.</p>
+    </div>
+  </div>
+
+  <div id="settings-panel" class="settings-panel hidden">
+    <h2>Profile Settings</h2>
+    <form onsubmit="saveSettings(event)">
+      <input type="text" id="profile-name" placeholder="Your Name" required />
+      <input type="email" id="profile-email" placeholder="Your Email" required />
+      <input type="password" id="profile-password" placeholder="New Password" />
+      <button type="submit">Save Changes</button>
+      <p id="settings-msg" class="success-msg"></p>
+    </form>
+  </div>
+</main>
+
+<script>
+    function toggleSettings() {
+  const panel = document.getElementById("settings-panel");
+  panel.classList.toggle("hidden");
+
+  // Load saved settings
+  const savedName = localStorage.getItem("userName");
+  const savedEmail = localStorage.getItem("userEmail");
+
+  if (savedName) document.getElementById("profile-name").value = savedName;
+  if (savedEmail) document.getElementById("profile-email").value = savedEmail;
+}
+
+function saveSettings(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("profile-name").value;
+  const email = document.getElementById("profile-email").value;
+  const password = document.getElementById("profile-password").value;
+
+  localStorage.setItem("userName", name);
+  localStorage.setItem("userEmail", email);
+
+  if (password) {
+    localStorage.setItem("userPassword", password); // simulation only
+  }
+
+  document.getElementById("settings-msg").textContent = "Profile updated!";
+}
+
+</script>
+<!-- Profile Settings Modal -->
+<div id="settings-modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2>Profile Settings</h2>
+    <form onsubmit="saveSettings(event)">
+      <input type="text" id="profile-name" placeholder="Your Name" required />
+      <input type="email" id="profile-email" placeholder="Your Email" required />
+      <input type="password" id="profile-password" placeholder="New Password" />
+      <button type="submit">Save Changes</button>
+      <p id="settings-msg" class="success-msg"></p>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

@@ -19,9 +19,9 @@
                     <li><a href="/index.html">Home</a></li>                    
                     <li><a href="./more.html">About us</a></li>
                     <li><a href="./contact4.html">Contact</a></li>
-                    <li><a href="../html/port.html">portifoliol</a></li>
-                    <li><a href="./blog2.html">blogs</a></li>
-                   
+                    <li><a href="./port.html">portifoliol</a></li>
+                    <li><a href="./blogs.html">blogs</a></li>
+                    <li><a href="./login.html">login</a></li>
                     
 
                 </ul>
@@ -29,7 +29,6 @@
        
         </div>
         <div class="upload">
-            <a href="./upload.html"><i class='bx bx-plus'></i>upload</a>
            </div>
 
         <div class="row">
@@ -50,14 +49,14 @@
                         <a href="#" class="btn">Read more</a>
                 </div>
                     <div class="card">
-                        <img src="/assets/images (1).png" alt="buy">
+                        <img src="/assets/board.jpeg" alt="buy">
                         <h4>Explore our blog for the latest trends in technology, coding tips,
                              and industry insights. Stay informed and inspired!
                         </h4>
                         <a href="#" class="btn">Read more</a>
                     </div>
                         <div class="card">
-                            <img src="/assets/download.png"alt="buy">
+                            <img src="/assets/images.png"alt="buy">
                             <h4>we provide some of the best coding resources available online. 
                                 Our platform offers a wide range of tutorials, articles, and tools to help you learn and grow as a coder.
                             </h4>
@@ -90,7 +89,7 @@
           
                         </div>
                         <div class="card">
-                            <img src="/assets/board.jpeg" alt="buy">
+                            <img src="/assets/log.png" alt="buy">
                            <h4>
                             Stay updated with the latest trends in technology and coding. 
                             Our blog covers a wide range of topics, from programming languages to industry news.                                    
@@ -122,15 +121,7 @@
   
    <img id="displayImage" src="" alt="" >
     <img id="displayImage" src="" alt="" >
-
-<button id="deleteImage">Delete Uploaded Image</button>
-
- 
-
-</div>
-
-    <footer class="footer">
-
+  <footer class="footer">
   <div class="footer-container">
     <div class="footer-brand">
       <h2>GRJE</h2>
@@ -140,7 +131,7 @@
     <div class="footer-links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="/GRJE-Lord/index.html">Home</a></li>
+        <li><a href="/index.html">Home</a></li>
         <li><a href="./more.html">About Me</a></li>
         <li><a href="./port.html">Portfolio</a></li>
         <li><a href="./contact4.html">Contact</a></li>
@@ -157,34 +148,11 @@
       </div>
     </div>
   </div>
-
-  <div class="footer-bottom">
+   <div class="footer-bottom">
     &copy; 2025 GRJE. All rights reserved.
   </div>
 </footer>
-
-
-<script>
-    
-    document.getElementById("deleteImage").addEventListener("click", () => {
-        localStorage.removeItem("uploadedImage");
-        document.getElementById("displayImage").src = "";
-        
-        alert("Uploaded image has been deleted.");
-    });
-
-  
-    
-    const imageData = localStorage.getItem("uploadedImage");
-
-    if (imageData) {
-      document.getElementById("displayImage").src = imageData;
-        document.getElementById("displayImage").alt = "Uploaded image";
-        document.getElementById("displayImage").style.display = "block";
-    } else {
-      document.getElementById("displayImage").alt = "No image uploaded.";
-    }
-  </script>
+ 
 </body>
 
 </html>
